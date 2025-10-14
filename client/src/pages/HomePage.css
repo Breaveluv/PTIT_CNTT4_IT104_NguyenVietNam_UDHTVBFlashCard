@@ -1,0 +1,13 @@
+/* HomePage.css */
+
+/* Đặt màu mặc định cho các liên kết điều hướng */
+.nav-link {
+    color: rgba(0, 0, 0, 0.65); /* Màu xám mờ */
+    transition: color 0.3s ease; /* Thêm hiệu ứng chuyển màu mượt mà */
+}
+
+/* Khi hover, đổi màu chữ thành màu xanh dương (primary color của Ant Design) */
+.nav-link:hover {
+    color: #1890ff !important; /* Màu xanh Ant Design */
+    cursor: pointer;
+}

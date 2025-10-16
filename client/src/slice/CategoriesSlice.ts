@@ -1,4 +1,4 @@
-// Updated CategoriesSlice.ts - Fixed API response handling
+
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 
@@ -64,7 +64,7 @@ export const createCategory = createAsyncThunk<
   }
 );
 
-// Optional: Thunks for update and delete
+
 export const updateCategory = createAsyncThunk<
   Category,
   { id: number } & CategoryPayload,
@@ -93,9 +93,9 @@ export const deleteCategory = createAsyncThunk<
   'categories/deleteCategory',
   async (id, { rejectWithValue }) => {
     try {
-      // Bỏ check response.data.success, chỉ await delete (axios tự throw nếu lỗi status)
+    
       await axios.delete(`http://localhost:8080/categories/${id}`);
-      return id;  // Thành công → fulfilled, filter data
+      return id;  
     } catch (err) {
       const error = err as AxiosError;
       return rejectWithValue({ 

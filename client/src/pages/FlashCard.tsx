@@ -165,8 +165,10 @@ export default function FlashCard() {
           <Select
             value={selectedCategory}
             onChange={handleCategoryChange}
-            style={{ width: 1300,
-              marginBottom:"10px"
+            style={{ width: 100,
+              height:"100%",
+              marginBottom:"10px",
+              
              }}
             options={categoryOptions}
           />
@@ -241,7 +243,7 @@ export default function FlashCard() {
               padding: 40,
 
               transform: 'rotateY(180deg)',
-              border: '1px solid #91d5ff',
+              border: '1px solid #fefefeff',
             }}
           >
             <div style={{ fontSize: '48px', fontWeight: 'bold', color: '#1890ff' }}>

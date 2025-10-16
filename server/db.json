@@ -62,16 +62,18 @@
     {
       "word": "deploped",
       "meaning": "triển khai",
+      "topic": "",
       "categoryId": 10,
+      "isLearned": true,
       "id": 1001
     },
     {
-      "id": 1002,
-      "categoryId": 10,
       "word": "intern",
       "meaning": "thực tập sinh",
       "topic": "Action",
-      "isLearned": false
+      "categoryId": 10,
+      "isLearned": true,
+      "id": 1002
     },
     {
       "word": "fresher",
@@ -108,9 +110,9 @@
     {
       "word": "a",
       "meaning": "a",
-      "categoryId": 21,
       "topic": "",
-      "isLearned": false,
+      "categoryId": 21,
+      "isLearned": true,
       "id": 1007
     }
   ]

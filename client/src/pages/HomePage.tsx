@@ -1,21 +1,42 @@
-// Updated HomePage.tsx - Export Header, Footer, HomeContent separately
+
 import { Footer as AntdFooter, Header as AntdHeader } from "antd/es/layout/layout";
 import { Button } from "antd";
 import { NavLink, useNavigate } from "react-router-dom";
-// *QUAN TRỌNG: Cần import file CSS để hiệu ứng hover hoạt động*
-// Nếu bạn không dùng module bundler hoặc không muốn tạo file CSS, bạn cần dùng thư viện CSS-in-JS.
-// Tuy nhiên, theo yêu cầu, tôi giả định bạn sẽ dùng cách này.
+import Swal from 'sweetalert2';
+
 import './HomePage.css'; 
 
-// Header component - Exported for Layout
+
 export function Header() {
   const navigate = useNavigate();
   const currentUser = JSON.parse(localStorage.getItem("currentUser") || "null");
 
   const handleLogout = () => {
-    localStorage.removeItem("currentUser");
-    console.log(1111);
-    navigate("/login");
+   
+    Swal.fire({
+      title: 'Xác nhận Đăng xuất',
+      text: "Bạn có chắc chắn muốn đăng xuất không?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#ff4d4f', 
+      cancelButtonColor: '#8c8c8c', 
+      confirmButtonText: 'Đăng xuất',
+      cancelButtonText: 'Hủy bỏ'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        
+        localStorage.removeItem("currentUser");
+        console.log("Đã đăng xuất thành công");
+       
+        Swal.fire(
+          'Đã đăng xuất!',
+          'Bạn đã đăng xuất khỏi hệ thống.',
+          'success'
+        ).then(() => {
+            navigate("/login");
+        });
+      }
+    });
   };
 
   return (
@@ -31,7 +52,7 @@ export function Header() {
         alignItems: "center",
       }}
     >
-      {/* Gom nhóm Logo và Navigation vào một div để chúng nằm sát lề trái */}
+      
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <div
           className="logo"
@@ -39,19 +60,19 @@ export function Header() {
             fontSize: "20px",
             fontWeight: "bold",
             color: "#000000",
-            marginRight: '20px', // Khoảng cách giữa logo và navigation
+            marginRight: '20px', 
           }}
         >
           VocabApp
         </div>
         
-        {/* Nhóm Navigation Links - Sử dụng NavLink */}
+    
         <div style={{
           display:'flex',
           gap:'10px',
           alignItems:'center'
         }}>
-          {/* Áp dụng className="nav-link" để có màu xám mờ và hiệu ứng hover */}
+        
          <NavLink 
            to="/" 
            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} 
@@ -91,9 +112,7 @@ export function Header() {
           </NavLink>
         </div>
       </div>
-      {/* Kết thúc nhóm Logo và Navigation */}
-
-      {/* Nhóm Buttons nằm ở góc phải */}
+    
       <div className="nav-buttons">
         {currentUser ? (
           <Button
@@ -102,7 +121,7 @@ export function Header() {
               backgroundColor: "#ff4d4f",
               borderColor: "#ff4d4f",
             }}
-            onClick={handleLogout}
+            onClick={handleLogout} 
           >
             Logout
           </Button>
@@ -136,7 +155,6 @@ export function Header() {
   );
 }
 
-// HomeContent - The body content for index route
 export function HomeContent() {
   const navigate = useNavigate();
   const currentUser = JSON.parse(localStorage.getItem("currentUser") || "null");
@@ -208,7 +226,6 @@ export function HomeContent() {
   );
 }
 
-// Footer component - Exported for Layout
 export function Footer() {
   return (
     <AntdFooter
@@ -226,7 +243,6 @@ export function Footer() {
   );
 }
 
-// Backward compatible full HomePage
 export default function HomePage() {
   return (
     <>

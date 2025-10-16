@@ -26,7 +26,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 
-// Layout component with Header, Outlet, Footer
+
 function AppLayout() {
   return (
     <>
